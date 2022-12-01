@@ -6,7 +6,7 @@ const getAllBook = async (req, res) => {
     if (result) {
       return res.status(200).json({
         errCode: 0,
-        errMessage: "Get all book success1!",
+        errMessage: "Get all book success!",
         data: result,
       });
     } else {

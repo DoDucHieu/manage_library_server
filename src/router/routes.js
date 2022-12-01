@@ -1,4 +1,5 @@
 import bookController from "../controller/bookController.js";
+import userController from "../controller/userController.js";
 
 const routes = (app) => {
   app.get("/", (req, res) => {
@@ -6,6 +7,7 @@ const routes = (app) => {
   });
 
   app.get("/get-all-book", bookController.getAllBook);
+  app.get("/get-all-user", userController.getAllUser);
 };
 
 export default routes;
