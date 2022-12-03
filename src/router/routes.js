@@ -7,6 +7,7 @@ const routes = (app) => {
   });
 
   app.get("/get-all-book", bookController.getAllBook);
+  app.post("/create-new-book", bookController.createNewBook);
   app.get("/get-all-user", userController.getAllUser);
 };
 

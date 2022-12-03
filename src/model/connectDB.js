@@ -7,5 +7,4 @@ const connect = async (dbUrl) => {
     console.error("Connect to db failed!");
   }
 };
-
 export default connect;
