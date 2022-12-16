@@ -4,6 +4,7 @@ const getAllBook = async (req, res) => {
   try {
     const result = await Book.find({});
     if (result) {
+      console.log("hello");
       return res.status(200).json({
         errCode: 0,
         errMessage: "Get all book success!",
