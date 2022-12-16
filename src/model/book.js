@@ -3,9 +3,14 @@ import mongoose from "mongoose";
 
 const bookSchema = new Schema(
   {
-    bookName: { type: String, required: true },
-    price: { type: Number, required: true },
-    imgUrl: { type: String },
+    title: { type: String, required: true },
+    author: { type: String, required: true },
+    description: { type: String, required: true },
+    datePublish: { type: String, required: true },
+    pageNumber: { type: Number, required: true },
+    category: { type: String, required: true },
+    imgUrl: { type: String, required: true },
+    price: {type:Number, required:true}
   },
   {
     timestamps: true,

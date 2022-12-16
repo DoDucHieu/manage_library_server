@@ -20,13 +20,18 @@ const getAllBook = async (req, res) => {
   }
 };
 
-const createNewBook = async (req, res) => {
+const createBook = async (req, res) => {
   try {
     console.log(req.body);
     const data = req.body;
     const result = await Book.create({
-      bookName: data.bookName,
+      title: data.title,
+      author:data.author,
+      description: data.description,
+      datePublish: data.datePublish,
+      pageNumber: data.pageNumber,
       price: data.price,
+      category: data.category,
       imgUrl: data.imgUrl,
     });
     return res.status(200).json({
@@ -44,7 +49,7 @@ const createNewBook = async (req, res) => {
 
 const bookController = {
   getAllBook,
-  createNewBook,
+  createBook,
 };
 
 export default bookController;
