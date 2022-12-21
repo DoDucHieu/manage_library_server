@@ -8,10 +8,11 @@ const userSchema = new Schema(
     certificatedId: { type: Number},
     email: { type: String},
     address: { type: String},
+    role: {type: String}
   },
   {
     timestamps: true,
   }
 );
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model("users", userSchema);

@@ -38,6 +38,7 @@ const signUp = async (req, res) => {
       const result = await User.create({
         userName: userData.userName,
         password: hashPassword,
+        role: "user"
       });
       const { accessToken, refreshToken } = generateToken(userData);
       return res.status(200).json({
