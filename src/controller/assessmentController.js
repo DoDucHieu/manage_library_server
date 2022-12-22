@@ -1,35 +1,16 @@
 import Book from "../model/book.js";
-import Comment from "../model/comment.js"
+import Assessment from "../model/assessment.js"
 import User from "../model/user.js";
 
-// const getAllCartByUserName = async (req, res) => {
-//   try {
-//     const userName = req.query.userName;
-//     const result = await Cart.find(
-//       { userName: userName },
-//       { createdAt: 0, updatedAt: 0, userName: 0, _id: 0 }
-//     ).populate("bookId", { createdAt: 0, updatedAt: 0 });
-//     return res.status(200).json({
-//       errCode: 0,
-//       errMessage: "Get all cart success!",
-//       data: result,
-//     });
-//   } catch (e) {
-//     return res.status(500).json({
-//       errCode: 1,
-//       errMessage: e.message,
-//     });
-//   }
-// };
-const getAllCommentByBookId = async(req, res)=>{
+const getAllAssessmentByBookId = async(req, res)=>{
     try {
         const data = req.query;
-        const result = await Comment.find({
+        const result = await Assessment.find({
             bookId: data.bookId,
           });
           return res.status(200).json({
             errCode: 0,
-            errMessage: "Get all comment success!",
+            errMessage: "Get all assessment success!",
             data: result,
           });
     } 
@@ -41,20 +22,20 @@ const getAllCommentByBookId = async(req, res)=>{
     }
 }
 
-const addComment = async (req, res)=>{
+const addAssessment = async (req, res)=>{
     try {
         const data = req.body;
         const user = await User.findOne({userName: data.userName});
         const book = await Book.findOne({bookId: data.bookId});
         if(user && book){
-          const result = await Comment.create({
+          const result = await Assessment.create({
             userName: data.userName,
             bookId: data.bookId,
-            comment: data.comment,
+            star: data.star,
           });
           return res.status(200).json({
             errCode: 0,
-            errMessage: "Add comment success!",
+            errMessage: "Add assessment success!",
             data: result,
           });
         }
@@ -73,20 +54,20 @@ const addComment = async (req, res)=>{
     }
 }
 
-const updateComment = async (req, res) => {
+const updateAssessment = async (req, res) => {
   try {
     const data = req.body;
-    const result = await Comment.findOne({
+    const result = await Assessment.findOne({
       userName: data.userName,
       bookId: data.bookId,
-      _id: data.commentId
+      _id: data.assessmentId
     });
     if (result) {
-      result.comment = data.newComment
+      result.star = data.newStar
       await result.save();
       return res.status(200).json({
         errCode: 0,
-        errMessage: "Update comment success!",
+        errMessage: "Update assessment success!",
         data: result,
       });
     } 
@@ -98,17 +79,17 @@ const updateComment = async (req, res) => {
     }
 };
 
-const deleteComment = async (req, res) => {
+const deleteAssessment = async (req, res) => {
   try {
     const data = req.body;
-    const result = await Comment.findOneAndDelete({
+    const result = await Assessment.findOneAndDelete({
       userName: data.userName,
       bookId: data.bookId,
-      _id: data.commentId
+      _id: data.assessmentId
     });
     return res.status(200).json({
       errCode: 0,
-      errMessage: "Delete comment success!",
+      errMessage: "Delete assessment success!",
       data: result,
     });
   } catch (e) {
@@ -119,10 +100,10 @@ const deleteComment = async (req, res) => {
   }
 };
 
-const commentController = {
-  getAllCommentByBookId,
-  addComment,
-  updateComment,
-  deleteComment,
+const assessmentController = {
+  getAllAssessmentByBookId,
+  addAssessment,
+  updateAssessment,
+  deleteAssessment,
 };
-export default commentController;
+export default assessmentController;

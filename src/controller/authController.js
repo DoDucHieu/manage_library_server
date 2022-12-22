@@ -69,11 +69,15 @@ const signIn = async (req, res) => {
         checkExist.password
       );
       if (compare) {
-        let { accessToken, refreshToken } = generateToken(userData);
+        let { accessToken, refreshToken } = generateToken({
+          ...userData,
+          role:checkExist.role
+        });
         return res.status(200).json({
           errCode: 0,
           errMessage: "Sign in success",
           userName: userData.userName,
+          role: checkExist.role,
           accessToken,
           refreshToken,
         });
