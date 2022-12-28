@@ -1,4 +1,4 @@
-import Cart from "../model/cart.js"
+import Cart from "../model/cart.js";
 
 const getAllCartByUserName = async (req, res) => {
   try {
@@ -28,12 +28,11 @@ const AddOrUpdateCart = async (req, res) => {
       bookId: cartData.bookId,
     });
     if (result) {
-      result.quantity =
-        Number(result.quantity) + Number(cartData.quantity);
+      result.quantity = Number(result.quantity) + Number(cartData.quantity);
       await result.save();
       return res.status(200).json({
         errCode: 0,
-        errMessage: "Update cart success!",
+        errMessage: "Add to cart success!",
         data: result,
       });
     } else {
